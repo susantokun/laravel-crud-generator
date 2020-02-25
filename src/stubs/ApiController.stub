@@ -1,0 +1,49 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyRootNamespaceHttp\Controllers\Controller;
+use DummyRootNamespace{{namespaceResource}}\{{nameResource}};
+use DummyRootNamespace{{namespaceModel}}\{{nameModel}};
+use Illuminate\Http\Request;
+
+class DummyClass extends Controller
+{
+    public function index()
+    {
+        ${{nameCrudPlural}} = {{nameModel}}::latest()->paginate(25);
+
+        return {{nameModel}}Resource::collection(${{nameCrudPlural}});
+    }
+
+    public function store(Request $request)
+    {
+        {{dataValidations}}
+        ${{nameCrudSingular}} = {{nameModel}}::create($request->all());
+
+        return response()->json(${{nameCrudSingular}}, 201);
+    }
+
+    public function show($id)
+    {
+        ${{nameCrudSingular}} = {{nameModel}}::findOrFail($id);
+
+        return ${{nameCrudSingular}};
+    }
+
+    public function update(Request $request, $id)
+    {
+        {{dataValidations}}
+        ${{nameCrudSingular}} = {{nameModel}}::findOrFail($id);
+        ${{nameCrudSingular}}->update($request->all());
+
+        return response()->json(${{nameCrudSingular}}, 200);
+    }
+
+    public function destroy($id)
+    {
+        {{nameModel}}::destroy($id);
+
+        return response()->json(null, 204);
+    }
+}

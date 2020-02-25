@@ -1,0 +1,26 @@
+{
+    "name": "susantokun/laravel-crud-generator",
+    "description": "Laravel CRUD Generator (Controller, Model, View, Route & API)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "susantokun",
+            "email": "admin@susantokun.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Susantokun\\LaravelCrudGenerator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Susantokun\\LaravelCrudGenerator\\LaravelCrudGeneratorServiceProvider"
+            ]
+        }
+    }
+}

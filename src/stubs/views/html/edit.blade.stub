@@ -1,0 +1,31 @@
+@extends('layouts.app')
+
+@section('title', (__('label.edit') . ' %%modelTitleSingular%% | '))
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            @include('admin.sidebar')
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">{{ __('label.edit') }} %%modelTitleSingular%% #{{ $%%crudNameSingular%%->%%primaryKey%% }}</div>
+                    <div class="card-body">
+                        <a href="{{ route('%%viewName%%.index') }}" title="{{ __('label.back') }}"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ __('label.back') }}</button></a>
+                        <br />
+                        <br />
+
+                        <form method="POST" action="{{ route('%%viewName%%.update',$%%crudNameSingular%%->%%primaryKey%%) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                            {{ method_field('PATCH') }}
+                            {{ csrf_field() }}
+
+                            @include ('%%viewTemplateDir%%.form', ['formMode' => 'edit'])
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

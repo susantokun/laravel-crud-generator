@@ -1,0 +1,84 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyRootNamespaceHttp\Controllers\Controller;
+use DummyRootNamespace{{namespaceModel}}\{{nameModel}};
+use Illuminate\Http\Request;
+
+class DummyClass extends Controller
+{
+    public function index(Request $request)
+    {
+        $keyword = $request->get('search');
+        $perPage = {{pagination}};
+
+        if (!empty($keyword)) {
+            ${{nameCrudPlural}} = {{nameModel}}::{{whereSnippet}}latest()->paginate($perPage);
+        } else {
+            ${{nameCrudPlural}} = {{nameModel}}::latest()->paginate($perPage);
+        }
+
+        return view('{{viewPath}}{{viewName}}.index', compact('{{nameCrudPlural}}'))->with('i', (request()->input('page', 1) - 1) * {{pagination}});
+    }
+
+    public function create()
+    {
+        return view('{{viewPath}}{{viewName}}.create');
+    }
+
+    public function store(Request $request)
+    {
+        {{dataValidations}}
+        $requestData = $request->all();
+        {{fileSnippet}}
+        {{nameModel}}::create($requestData);
+
+        return redirect()->route('{{viewName}}.index')->with('toast_success', '{{modelTitleSingular}} created successfully.');
+    }
+
+    public function show({{nameModel}} ${{nameCrudSingular}})
+    {
+        return view('{{viewPath}}{{viewName}}.show', compact('{{nameCrudSingular}}'));
+    }
+
+    public function edit({{nameModel}} ${{nameCrudSingular}})
+    {
+        return view('{{viewPath}}{{viewName}}.edit', compact('{{nameCrudSingular}}'));
+    }
+
+    public function update(Request $request, {{nameModel}} ${{nameCrudSingular}})
+    {
+        {{dataValidations}}
+        $requestData = $request->all();
+        {{fileSnippet}}
+        ${{nameCrudSingular}}->update($requestData);
+
+        return redirect()->route('{{viewName}}.index')->with('toast_success', '{{modelTitleSingular}} updated successfully.');
+    }
+
+    public function destroy({{nameModel}} ${{nameCrudSingular}})
+    {
+        ${{nameCrudSingular}}->delete();
+
+        return redirect()->route('{{viewName}}.index')->with('toast_success', '{{modelTitleSingular}} deleted successfully.');
+    }
+
+    public function delete($id)
+    {
+        $delete = {{nameModel}}::where('id', $id)->delete();
+
+        if ($delete == 1) {
+            $success = true;
+            $message = "{{modelTitleSingular}} deleted successfully.";
+        } else {
+            $success = true;
+            $message = "{{modelTitleSingular}} not found!";
+        }
+
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+    }
+}

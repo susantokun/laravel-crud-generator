@@ -1,0 +1,5 @@
+%%formFieldsHtml%%
+
+<div class="form-group">
+    <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? __('label.update') : __('label.create') }}">
+</div>

@@ -1,0 +1,110 @@
+@extends('layouts.app')
+
+@section('title','%%modelTitlePlural%% | ')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            @include('admin.sidebar')
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">%%modelTitlePlural%%</div>
+                    <div class="card-body">
+                        <a href="{{ route('%%viewName%%.create') }}" class="btn btn-success btn-sm" title="{{ __('label.add_new') }} %%modelTitleSingular%%">
+                            <i class="fa fa-plus" aria-hidden="true"></i> {{ __('label.add_new') }}
+                        </a>
+
+                        <form method="GET" action="{{ route('%%viewName%%.index') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="{{ __('label.search') }}" value="{{ request('search') }}">
+                                <span class="input-group-append">
+                                    <button class="btn btn-secondary" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+
+                        <br/>
+                        <br/>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center; width: 50px">#</th>%%formHeadingHtml%%<th style="text-align: center; width: 220px">{{ __('label.actions') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($%%crudName%% as $item)
+                                    <tr>
+                                        <td style="text-align: center">{{ ++$i }}</td>
+                                        %%formBodyHtml%%
+                                        <td style="text-align: center">
+                                            <a href="{{ route('%%viewName%%.show',$item->%%primaryKey%%) }}" title="{{ __('label.view') }} %%modelTitleSingular%%"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> {{ __('label.view') }}</button></a>
+                                            <a href="{{ route('%%viewName%%.edit',$item->%%primaryKey%%) }}" title="{{ __('label.edit') }} %%modelTitleSingular%%"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ __('label.edit') }}</button></a>
+                                            <button type="submit" class="btn btn-danger btn-sm delete-confirm" title="{{ __('label.delete') }} %%modelTitleSingular%%" data-id="{{$item->id}}"><i class="fa fa-trash-o" aria-hidden="true"></i> {{ __('label.delete') }}</button>
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <div class="pagination-wrapper"> {!! $%%crudName%%->appends(['search' => Request::get('search')])->render() !!} </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@push('scripts')
+<script type="text/javascript">
+    $('.delete-confirm').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(function (e) {
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: 'POST',
+                    url: "{{url('/%%routeGroup%%%%viewName%%/delete')}}/" + id,
+                    data: {
+                        _token: CSRF_TOKEN
+                    },
+                    dataType: 'JSON',
+                    success: function (results) {
+
+                        if (results.success === true) {
+                            Swal.fire("Done!", results.message, "success").then(
+                                function () {
+                                    location.reload();
+                                })
+                        } else {
+                            Swal.fire("Error!", results.message, "error").then(function () {
+                                location.reload();
+                            })
+                        }
+                    }
+                });
+            } else {
+                e.dismiss;
+            }
+
+        }, function (dismiss) {
+            return false;
+        })
+    });
+
+</script>
+@endpush

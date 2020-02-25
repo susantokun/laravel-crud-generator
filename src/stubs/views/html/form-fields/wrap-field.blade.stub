@@ -1,0 +1,5 @@
+<div class="form-group">
+    <label for="%1$s" class="control-label"><strong>{{ %2$s }}</strong></label>
+    %3$s
+    {!! $errors->first('%1$s', '<div class="invalid-feedback">:message</div>') !!}
+</div>
