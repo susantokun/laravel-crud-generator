@@ -65,7 +65,7 @@ if ($request->session()->has('toast_error')) {
 email : admin@mail.com
 password : password
 
-
+-- API --
 php artisan crud:api CategoryCertificate --namespace-controller="Info\Api" --namespace-model="Models\Info" --namespace-resource="Resources\Info" --route-group="info" --fields_from_file="json/info_category_certificates.json"
 
 php artisan crud:api-controller CategoryCertificateController --namespace-controller="Http\Controllers\Info\Api" --namespace-model="Models\Info" --namespace-resource="Resources\Info" --name-model="CategoryCertificate" --force
@@ -73,7 +73,7 @@ php artisan crud:api-controller CategoryCertificateController --namespace-contro
 php artisan crud:api-resource CategoryCertificateResource --namespace-resource="Resources\Info" --force
 
 
-
+-- CRUD --
 php artisan crud:generate CategoryCertificate --namespace-controller="Info" --namespace-model="Models\\Info" --view-path="info" --route-group="info" --form-helper="html" --fields_from_file="json/info_category_certificates.json"
 
 php artisan crud:controller CategoryCertificateController --name-model="CategoryCertificate" --namespace-controller="Http\Controllers\Info" --namespace-model="Models\Info" --view-path="info" --route-group=info --force
