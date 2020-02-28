@@ -107,7 +107,7 @@ class CrudCommand extends Command
 
         $this->call('crud:controller', ['name' => $namespaceController . $name . 'Controller', '--name-model' => $name, '--namespace-model' => $namespaceModel, '--data-validations' => $validations, '--fields' => $fields, '--view-path' => $viewPath, '--route-group' => $routeGroup, '--pagination' => $perPage]);
         $this->call('crud:model', ['name' => $name, '--namespace-model' => $namespaceModel, '--fillable' => $fillable, '--table' => $tableName, '--pk' => $primaryKey, '--relationships' => $relationships, '--soft-deletes' => $softDeletes]);
-        $this->call('crud:migration', ['name' => $migrationName, '--schema' => $migrationFields, '--pk' => $primaryKey, '--indexes' => $indexes, '--foreign-keys' => $foreignKeys, '--soft-deletes' => $softDeletes]);
+        // $this->call('crud:migration', ['name' => $migrationName, '--schema' => $migrationFields, '--pk' => $primaryKey, '--indexes' => $indexes, '--foreign-keys' => $foreignKeys, '--soft-deletes' => $softDeletes]);
         $this->call('crud:view', ['name' => $name, '--fields' => $fields, '--validations' => $validations, '--view-path' => $viewPath, '--route-group' => $routeGroup, '--localize' => $localize, '--pk' => $primaryKey, '--form-helper' => $formHelper]);
 
         if ($localize == 'yes') {

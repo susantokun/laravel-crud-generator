@@ -5,7 +5,7 @@
 @section('content')
 
                     <div class="row">
-                        <div class="col-xl-12 col-md-6 mb-4">
+                        <div class="col-md-12 mb-4">
                             <div class="card shadow mb-4 border-left-primary">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">{{ __('label.manage') }} %%modelTitlePlural%%</h6>
@@ -38,11 +38,11 @@
                                                 <tr class="table-active">
                                                     <th style="text-align: center; width: 50px">#</th>
                                                     %%formHeadingHtml%%
-                                                    <th style="text-align: center; width: 220px">{{ __('label.actions') }}</th>
+                                                    <th style="text-align: center; width: 120px">{{ __('label.actions') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($menus as $item)
+                                                @foreach($%%crudName%% as $item)
 
                                                 <tr>
                                                     <td style="text-align: center">{{ ++$i }}</td>
