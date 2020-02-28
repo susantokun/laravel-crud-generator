@@ -1,1 +1,11 @@
-<textarea class="form-control {{$errors->has('%%itemName%%') ? "is-invalid": ""}}" rows="5" name="%%itemName%%" type="%%fieldType%%" id="%%itemName%%" placeholder="{{ __('%%crudNameSingular%%.%%itemName%%') }}" %%required%%>{{ isset($%%crudNameSingular%%->%%itemName%%) ? $%%crudNameSingular%%->%%itemName%% : old('%%itemName%%') }}</textarea>
+<textarea
+                                                        type="%%fieldType%%"
+                                                        rows="5"
+                                                        class="form-control {{$errors->has('%%itemName%%') ? "is-invalid": ""}}"
+                                                        name="%%itemName%%"
+                                                        id="%%itemName%%"
+                                                        placeholder="{{ __('%%crudNameSingular%%.%%itemName%%') }}"
+                                                        %%required%%>
+                                                        {{ isset($%%crudNameSingular%%->%%itemName%%) ? $%%crudNameSingular%%->%%itemName%% : old('%%itemName%%') }}
+                                                    </textarea>
+

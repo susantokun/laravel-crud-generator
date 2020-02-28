@@ -219,14 +219,14 @@ class CrudApiCommand extends Command
             return '';
         }
 
-        $validationsString = '';
-        foreach ($fields->validations as $validation) {
-            $validationsString .= $validation->field . '#' . $validation->rules . ';';
+        $dataFieldString = '';
+        foreach ($fields->fields as $dataField) {
+            $dataFieldString .= $dataField->name . '#' . $dataField->name . ';';
         }
 
-        $validationsString = rtrim($validationsString, ';');
+        $dataFieldString = rtrim($dataFieldString, ';');
 
-        return $validationsString;
+        return $dataFieldString;
     }
 
 }

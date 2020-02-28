@@ -46,14 +46,14 @@ class CrudApiResourceCommand extends GeneratorCommand
         if (trim($resource) != '') {
             $dataResource = "return [";
 
-            $rules = explode(';', $resource);
-            foreach ($rules as $v) {
+            $dataField = explode(';', $resource);
+            foreach ($dataField as $v) {
                 if (trim($v) == '') {
                     continue;
                 }
                 $parts = explode('#', $v);
                 $fieldName = trim($parts[0]);
-                $rules = trim($parts[1]);
+                $dataField = trim($parts[1]);
                 $dataResource .= "\n\t\t\t'$fieldName' => \$this->$fieldName,";
             }
 

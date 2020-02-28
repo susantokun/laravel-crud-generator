@@ -1,5 +1,9 @@
-<select name="%%itemName%%" class="form-control {{$errors->has('%%itemName%%') ? "is-invalid": ""}}" id="%%itemName%%" %%required%%>
-    @foreach (json_decode('%%options%%', true) as $optionKey => $optionValue)
-        <option value="{{ $optionKey }}" {{ (isset($%%crudNameSingular%%->%%itemName%%) && $%%crudNameSingular%%->%%itemName%% == $optionKey) ? 'selected' : ''}} {{ old('%%itemName%%') == $optionKey ? 'selected' : ''}}>{{ $optionValue }}</option>
-    @endforeach
-</select>
+<select
+                                                class="form-control {{$errors->has('%%itemName%%') ? "is-invalid": ""}}"
+                                                name="%%itemName%%"
+                                                id="%%itemName%%"
+                                                %%required%%>@foreach (json_decode('%%options%%', true) as $optionKey => $optionValue)
+
+                                                <option value="{{ $optionKey }}"{{ (isset($%%crudNameSingular%%->%%itemName%%) && $%%crudNameSingular%%->%%itemName%% == $optionKey) ? 'selected' : ''}}{{ old('%%itemName%%') == $optionKey ? 'selected' : ''}}>{{ $optionValue }}</option>@endforeach
+
+                                            </select>

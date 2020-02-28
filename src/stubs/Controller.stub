@@ -72,7 +72,7 @@ class DummyClass extends Controller
             $success = true;
             $message = "{{modelTitleSingular}} deleted successfully.";
         } else {
-            $success = true;
+            $success = false;
             $message = "{{modelTitleSingular}} not found!";
         }
 
