@@ -200,9 +200,13 @@ class CrudViewCommand extends Command
             if ($this->option('localize') == 'yes') {
                 $label = '{{ __(\'' . $this->crudNameSingular . '.' . $field . '\') }}';
             }
-            $this->formHeadingHtml .= '<th>' . $label . '</th>';
-            $this->formBodyHtml .= '<td>{{ $item->' . $field . ' }}</td>';
-            $this->formBodyHtmlForShowView .= '<tr><th> ' . $label . ' </th><td> {{ $%%crudNameSingular%%->' . $field . ' }} </td></tr>';
+            $this->formHeadingHtml .= '<th>' . $label . '</th>' . "\n\t\t\t\t\t\t\t\t\t\t\t\t\t";
+            $this->formBodyHtml .= '<td>{{ $item->' . $field . ' }}</td>' . "\n\t\t\t\t\t\t\t\t\t\t\t\t\t";
+            $this->formBodyHtmlForShowView .= '<tr>
+                                                    <th>' . $label . '</th>
+                                                    <td>{{ $%%crudNameSingular%%->' . $field . ' }}</td>
+                                                </tr>
+                                                ';
 
             $i++;
         }

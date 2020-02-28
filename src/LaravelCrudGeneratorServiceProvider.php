@@ -38,19 +38,15 @@ class LaravelCrudGeneratorServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . '/../publish/views/' => base_path('resources/views/'),
+            __DIR__ . '/../publish/database/migrations/' => base_path('database/migrations/'),
         ]);
 
         $this->publishes([
-            __DIR__ . '/../publish/lang/' => base_path('resources/lang/'),
+            __DIR__ . '/../publish/database/seeds/' => base_path('database/seeds/'),
         ]);
 
         $this->publishes([
-            __DIR__ . '/../publish/views/auth/' => base_path('resources/views/auth/'),
-        ]);
-
-        $this->publishes([
-            __DIR__ . '/stubs/' => base_path('resources/laravel-crud-generator/'),
+            __DIR__ . '/../publish/Http/Controllers/' => base_path('app/Http/Controllers/'),
         ]);
 
         $this->publishes([
@@ -58,7 +54,31 @@ class LaravelCrudGeneratorServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . '/../publish/js/' => base_path('resources/js/'),
+            __DIR__ . '/../publish/Models/' => base_path('app/Models/'),
         ]);
+
+        $this->publishes([
+            __DIR__ . '/../publish/resources/' => base_path('resources/'),
+        ]);
+
+        $this->publishes([
+            __DIR__ . '/../publish/routes/' => base_path('routes/'),
+        ]);
+
+        $this->publishes([
+            __DIR__ . '/../publish/storage/app/public/uploads/' => base_path('storage/app/public/uploads/'),
+        ]);
+
+        $this->publishes([
+            __DIR__ . '/../publish/public/js/' => base_path('public/js/'),
+        ]);
+
+        $this->publishes([
+            __DIR__ . '/../publish/json/' => base_path('json/'),
+        ]);
+
+        // $this->publishes([
+        //     __DIR__ . '/stubs/' => base_path('resources/laravel-crud-generator/'),
+        // ]);
     }
 }

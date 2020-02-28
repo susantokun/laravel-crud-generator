@@ -1,0 +1,45 @@
+{
+    "fields": [{
+            "name": "parent_id",
+            "type": "unsignedbigint#no"
+        },
+        {
+            "name": "name",
+            "type": "string#no"
+        },
+        {
+            "name": "icon",
+            "type": "string"
+        },
+        {
+            "name": "url",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": "select",
+            "options": {
+                "enable": "Enable",
+                "disable": "Disable"
+            }
+        }
+    ],
+    "validations": [{
+            "field": "parent_id",
+            "rules": "required"
+        },
+        {
+            "field": "name",
+            "rules": "required"
+        },
+        {
+            "field": "status",
+            "rules": "required"
+        }
+    ],
+    "relationships": [{
+        "name": "parent",
+        "type": "belongsTo",
+        "class": "Menu::class"
+    }]
+}

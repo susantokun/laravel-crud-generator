@@ -2,7 +2,7 @@
 
 return [
 
-    'custom_template'       => true,
+    'custom_template'       => false,
     'path'                  => base_path('resources/laravel-crud-generator/'),
     'view_columns_number'   => 3,
     'custom_delimiter'      => ['%%', '%%'],
