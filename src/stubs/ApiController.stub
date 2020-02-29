@@ -11,7 +11,7 @@ class DummyClass extends Controller
 {
     public function index()
     {
-        ${{nameCrudPlural}} = {{nameModel}}::latest()->paginate(25);
+        ${{nameCrudPlural}} = {{nameModel}}::where('status','enable')->latest()->paginate(25);
 
         return {{nameModel}}Resource::collection(${{nameCrudPlural}});
     }
@@ -26,7 +26,7 @@ class DummyClass extends Controller
 
     public function show($id)
     {
-        ${{nameCrudSingular}} = {{nameModel}}::findOrFail($id);
+        ${{nameCrudSingular}} = {{nameModel}}::where('status','enable')->findOrFail($id);
 
         return ${{nameCrudSingular}};
     }
