@@ -1,5 +1,6 @@
 require('./bootstrap');
 require('./sb-admin-2');
+require("./custom");
 
 const Swal = (window.Swal = require("sweetalert2"));
 const Chart = (window.Chart = require("chart.js"));
